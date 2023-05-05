@@ -174,7 +174,7 @@ module Color
     end
 
     def to_rgb_hex rgb
-      0x0000000 | ((rgb[:r] << 16) + (rgb[:g] << 8) + rgb[:b]).to_i
+      0x0000000 | (rgb[:r] << 16) + (rgb[:g] << 8) + rgb[:b]
     end
 
     def from_rgba_hex hex
@@ -182,7 +182,7 @@ module Color
     end
 
     def to_rgba_hex rgba
-      0x00000000 | ((rgba[:r] << 24) + (rgba[:g] << 16) + (rgba[:b] << 8) + (rgba[:a] || 255)).to_i
+      0x00000000 | (rgba[:r] << 24) + (rgba[:g] << 16) + (rgba[:b] << 8) + (rgba[:a] || 255)
     end
 
     def from_bgr_hex hex
@@ -190,15 +190,15 @@ module Color
     end
 
     def to_bgr_hex bgr
-      0x000000 | ((bgr[:b] << 16) + (bgr[:g] << 8) + bgr[:r]).to_i
+      0x000000 | (bgr[:b] << 16) + (bgr[:g] << 8) + bgr[:r]
     end
 
     def from_abgr_hex hex
-      { r: hex & 0x000000FF, g: (hex & 0x0000FF00) >> 8, b: (hex & 0x00FF0000) >> 16, a: (hex & 0xFF000000) >> 24  }
+      { r: hex & 0x000000FF, g: (hex & 0x0000FF00) >> 8, b: (hex & 0x00FF0000) >> 16, a: (hex & 0xFF000000) >> 24 }
     end
 
     def to_abgr_hex abgr
-      0x00000000 |  (((abgr[:a] || 255) << 24) + (abgr[:b] << 16) + (abgr[:g] << 8) + abgr[:r]).to_i
+      0x00000000 |  ((abgr[:a] || 255) << 24) + (abgr[:b] << 16) + (abgr[:g] << 8) + abgr[:r]
     end
 
     def rgb_to_lch rgb
