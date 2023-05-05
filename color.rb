@@ -1,5 +1,5 @@
 module Color
-  # Web
+  # Standard Web and X11 Colors
   ALICEBLUE = { r: 240, g: 248, b: 255 }.freeze
   ANTIQUEWHITE = { r: 250, g: 235, b: 215 }.freeze
   AQUA = { r: 0, g: 255, b: 255 }.freeze
