@@ -168,6 +168,10 @@ module Color
   DRAGONGRAY = { r: 223, g: 223, b: 223 }.freeze
   DRAGONGREY = { r: 223, g: 223, b: 223 }.freeze
 
+  # Clear
+  CLEAR = { a: 0 }.freeze
+  TRANSPARENT = { r: 0, g: 0, b: 0, a: 0 }.freeze
+  
   class << self
     def from_rgb_hex hex
       { r: (hex & 0xFF0000) >> 16, g: (hex & 0x00FF00) >> 8, b: hex & 0x0000FF }
