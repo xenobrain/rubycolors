@@ -205,6 +205,69 @@ module Color
       0x00000000 |  ((abgr[:a] || 255) << 24) + (abgr[:b] << 16) + (abgr[:g] << 8) + abgr[:r]
     end
 
+    def rgb_to_hsv rgb
+      r = rgb[:r] / 255.0
+      g = rgb[:g] / 255.0
+      b = rgb[:b] / 255.0
+
+      max = r > g ? (r > b ? r : b) : (g > b ? g : b)
+      min = r < g ? (r < b ? r : b) : (g < b ? g : b)
+      delta = max - min
+      v = max
+
+      return { h: 0, s: 0, v: v } if delta.zero?
+
+      s = delta / max
+      h = if max == r
+        (g - b) / delta % 6
+      elsif max == g
+        (b - r) / delta + 2
+      else
+        (r - g) / delta + 4
+      end * 60
+
+      { h: h, s: s, v: v }
+    end
+
+    def hsv_to_rgb hsv
+      h = hsv[:h]
+      s = hsv[:s]
+      v = hsv[:v]
+
+      c = v * s
+      hh = h / 60.0
+      x = c * (1 - ((hh % 2) - 1).abs)
+      m = v - c
+
+      if hh >= 0 && hh < 1
+        r = c
+        g = x
+        b = 0
+      elsif hh >= 1 && hh < 2
+        r = x
+        g = c
+        b = 0
+      elsif hh >= 2 && hh < 3
+        r = 0
+        g = c
+        b = x
+      elsif hh >= 3 && hh < 4
+        r = 0
+        g = x
+        b = c
+      elsif hh >= 4 && hh < 5
+        r = x
+        g = 0
+        b = c
+      else
+        r = c
+        g = 0
+        b = x
+      end
+
+      { r: ((r + m) * 255.0).round, g: ((g + m) * 255.0).round, b: ((b + m) * 255.0).round }
+    end
+
     def rgb_to_lch rgb
       # To XYZ
       r = (rgb[:r] * 0.00392156862745098).abs
