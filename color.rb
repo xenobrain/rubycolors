@@ -114,6 +114,8 @@ module Color
   # GOLD, hash of `{ r: 255, g: 215, b: 0 }`
   GOLD = { r: 255, g: 215, b: 0 }.freeze
   # GOLDENROD, hash of `{ r: 218, g: 165, b: 32 }`
+  GOLDENROD = { r: 218, g: 165, b: 32 }.freeze
+  # GRAY, hash of `{ r: 128, g: 128, b: 128 }`
   GRAY = { r: 128, g: 128, b: 128 }.freeze
   # GREEN, hash of `{ r: 0, g: 128, b: 0 }`
   GREEN = { r: 0, g: 128, b: 0 }.freeze
