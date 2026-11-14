@@ -3,16 +3,7 @@
 #  my_color = Color::BLACK provides a pure black color hash, with rgb values of 0, 0, 0 respectively.
 #  if you need transparency, duplicate the color hash and add an alpha value with `a: 100`
 #  or whatever alpha value you want.
-#
-# The colors and conversion helpers are grouped into small modules (WebColors,
-# X11Colors, JamColors and Conversion) so that no single module exceeds
-# mruby's 256-symbol-per-module limit. They are mixed back into Color so that
-# Color::BLACK, Color::DRAGONRED, Color.from_rgb_hex, etc. work as before.
 module Color
-  # W3C Web Colors
-  #
-  # The standard web colors as defined by the W3C CSS color specification
-  # (the CSS extended color keywords).
   module WebColors
     # ALICEBLUE, hash of `{ r: 240, g: 248, b: 255 }`
     ALICEBLUE = { r: 240, g: 248, b: 255 }.freeze
@@ -312,9 +303,6 @@ module Color
     YELLOWGREEN = { r: 154, g: 205, b: 50 }.freeze
   end
 
-  # X11 Colors
-  #
-  # X11-style extended colors that are not part of the W3C web palette.
   module X11Colors
     # CORNFLOWER, hash of `{ r: 100, g: 149, b: 237 }`
     CORNFLOWER = { r: 100, g: 149, b: 237 }.freeze
@@ -326,10 +314,6 @@ module Color
     PURPLE3 = { r: 160, g: 32, b: 240 }.freeze
   end
 
-  # Jam Colors
-  #
-  # Colors for the DragonRuby engine: the Nokia Jam palette, the
-  # DragonRuby palette, and the clear/transparent colors.
   module JamColors
     # Nokia Jam
 
@@ -586,9 +570,6 @@ module Color
     end
   end
 
-  # Mix the color groups back into Color so that Color::BLACK,
-  # Color::DRAGONRED, etc. keep working, and make the conversion
-  # helpers available as module functions (Color.from_rgb_hex, etc.)
   include WebColors
   include X11Colors
   include JamColors
