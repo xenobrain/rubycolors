@@ -1,8 +1,7 @@
 # This module provides standard colors for DragonRuby
 # @example Color Module Use
 #  my_color = Color::BLACK provides a pure black color hash, with rgb values of 0, 0, 0 respectively.
-#  if you need transparency, duplicate the color hash and add an alpha value with `a: 100`
-#  or whatever alpha value you want.
+#  if you need transparency, duplicate the color hash and add an alpha value such as `a: 100`.
 module Color
   module WebColors
     # ALICEBLUE, hash of `{ r: 240, g: 248, b: 255 }`
@@ -351,10 +350,6 @@ module Color
     TRANSPARENT = { r: 0, g: 0, b: 0, a: 0 }.freeze
   end
 
-  # Color Conversion Helpers
-  #
-  # Hex, HSV and LCH conversion and interpolation methods, mixed into Color
-  # as module functions (e.g. Color.from_rgb_hex).
   module Conversion
     # Converts the given RGB hex value and returns a Hash of decimal RGB values
     # @param [Integer] `hex` value to convert to RGB values
@@ -550,7 +545,7 @@ module Color
       { r: (r * 255.0).round, g: (g * 255.0).round, b: (b * 255.0).round }
     end
 
-    # Linearly interpolates between two LCH hashes, taking the shortest hue path
+    # Linearly interpolates between two LCH hashes
     # @param [Hash] a, LCH hash `{ l:, c:, h: }`
     # @param [Hash] b, LCH hash `{ l:, c:, h: }`
     # @param [Float] t, interpolation factor in 0..1
@@ -560,7 +555,7 @@ module Color
       { l: a[:l] + (b[:l] - a[:l]) * t, c: a[:c] + (b[:c] - a[:c]) * t, h: (a[:h] + angle + 360.0) % 360.0 }
     end
 
-    # Linearly interpolates between two color hashes
+    # Linearly interpolates between two rgb color hashes
     # @param [Hash] a, color hash `{ r:, g:, b: }`
     # @param [Hash] b, color hash `{ r:, g:, b: }`
     # @param [Float] t, interpolation factor in 0..1
